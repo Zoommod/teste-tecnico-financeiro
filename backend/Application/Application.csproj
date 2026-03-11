@@ -9,6 +9,7 @@
     <Folder Include="DTOs/Pessoa/" />
     <Folder Include="DTOs/Transacao/" />
     <Folder Include="Interfaces/" />
+    <Folder Include="Services/" />
   </ItemGroup>
 
   <PropertyGroup>
