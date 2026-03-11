@@ -8,6 +8,7 @@
     <Folder Include="DTOs/Categoria/" />
     <Folder Include="DTOs/Pessoa/" />
     <Folder Include="DTOs/Transacao/" />
+    <Folder Include="Interfaces/" />
   </ItemGroup>
 
   <PropertyGroup>
