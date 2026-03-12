@@ -6,5 +6,5 @@ namespace Domain.Interfaces;
 public interface IPessoaRepository : IRepository<Pessoa>
 {
     Task<Pessoa?> ObterPorIdComTransacoesAsync(Guid id);
-    Task<IEnumerable<Pessoa>> ObterTodosComTrasacoesAsync();
+    Task<IEnumerable<Pessoa>> ObterTodosComTransacoesAsync();
 }
