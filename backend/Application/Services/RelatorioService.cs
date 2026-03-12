@@ -20,7 +20,7 @@ public class RelatorioService : IRelatorioService
 
     public async Task<RelatorioTotaisPorPessoaDto> ObterTotaisPorPessoaAsync()
     {
-        var pessoas = await _pessoaRepository.ObterTodosComTrasacoesAsync();
+        var pessoas = await _pessoaRepository.ObterTodosComTransacoesAsync();
 
         var totaisPorPessoa = pessoas.Select(pessoa =>
         {
