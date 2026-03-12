@@ -25,17 +25,6 @@ public class Categoria : BaseEntity
         Transacoes = new List<Transacao>();
     }
 
-    public void AtualizarDescricao(string descricao)
-    {
-        ValidarDescricao(descricao);
-        Descricao = descricao;
-    }
-
-    public void AtualizarFinalidade(Finalidade finalidade)
-    {
-        Finalidade = finalidade;
-    }
-
     public bool AceitaTipoTransacao(TipoTransacao tipo)
     {
         return Finalidade switch

@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers/" />
+    <Folder Include="Middleware/" />
+  </ItemGroup>
+
 </Project>

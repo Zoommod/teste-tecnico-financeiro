@@ -42,37 +42,6 @@ public class TransacaoService : ITransacaoService
         return await MapearParaDtoAsync(transacaoCriada);
     }
 
-    public async Task<TransacaoDto> AtualizarAsync(AtualizarTransacaoDto dto)
-    {
-        var transacao = await _transacaoRepository.ObterPorIdComRelacoesAsync(dto.Id);
-
-        if(transacao is null)
-            throw new EntityNotFoundException(nameof(Transacao), dto.Id);
-        
-        var categoria = await _categoriaRepository.ObterPorIdAsync(dto.CategoriaId);
-        if(categoria is null)
-            throw new EntityNotFoundException(nameof(Categoria), dto.CategoriaId);
-        
-        ValidarMenorDeIdade(transacao.Pessoa, dto.Tipo);
-        ValidarCompatibilidadeCategoria(categoria, dto.Tipo);
-
-        transacao.Atualizar(dto.Descricao, dto.Valor, dto.Tipo, dto.CategoriaId);
-
-        await _transacaoRepository.AtualizarAsync(transacao);
-
-        return await MapearParaDtoAsync(transacao);
-    }
-
-    public async Task DeletarAsync(Guid id)
-    {
-        var existe = await _transacaoRepository.ExisteAsync(id);
-
-        if(!existe)
-            throw new EntityNotFoundException(nameof(Transacao), id);
-        
-        await _transacaoRepository.DeletarAsync(id);
-    }
-
     public async Task<TransacaoDto?> ObterPorIdAsync(Guid id)
     {
         var transacao = await _transacaoRepository.ObterPorIdComRelacoesAsync(id);

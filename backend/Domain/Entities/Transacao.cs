@@ -37,17 +37,6 @@ public class Transacao : BaseEntity
         PessoaId = pessoaId;
     }
 
-    public void Atualizar(string descricao, decimal valor, TipoTransacao tipo, Guid categoriaId)
-    {
-        ValidarDescricao(descricao);
-        ValidarValor(valor);
-
-        Descricao = descricao;
-        Valor = valor;
-        Tipo = tipo;
-        CategoriaId = categoriaId;
-    }
-
     private static void ValidarDescricao(string descricao)
     {
         if (string.IsNullOrWhiteSpace(descricao))

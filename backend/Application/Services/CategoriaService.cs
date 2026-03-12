@@ -24,31 +24,6 @@ public class CategoriaService : ICategoriaService
         return MapearParaDto(categoriaCriada);
     }
 
-    public async Task<CategoriaDto> AtualizarAsync(AtualizarCategoriaDto dto)
-    {
-        var categoria = await _categoriaRepository.ObterPorIdAsync(dto.Id);
-
-        if(categoria is null)
-            throw new EntityNotFoundException(nameof(Categoria), dto.Id);
-        
-        categoria.AtualizarDescricao(dto.Descricao);
-        categoria.AtualizarFinalidade(dto.Finalidade);
-
-        await _categoriaRepository.AtualizarAsync(categoria);
-
-        return MapearParaDto(categoria);
-    }
-
-    public async Task DeletarAsync(Guid id)
-    {
-        var existe = await _categoriaRepository.ExisteAsync(id);
-
-        if(!existe)
-            throw new EntityNotFoundException(nameof(Categoria), id);
-        
-        await _categoriaRepository.DeletarAsync(id);
-    }    
-
     public async Task<CategoriaDto?> ObterPorIdAsync(Guid id)
     {
         var categoria = await _categoriaRepository.ObterPorIdAsync(id);
