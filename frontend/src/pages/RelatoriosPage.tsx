@@ -36,80 +36,76 @@ export function RelatoriosPage() {
     void carregar()
   }, [])
 
-  if (carregando) {
-    return (
-      <section className="card">
-        <h1 className="page-title">Relatórios</h1>
-        <p>Carregando...</p>
-      </section>
-    )
-  }
-
   return (
     <section className="card">
       <h1 className="page-title">Relatórios</h1>
 
+      {carregando && <p>Carregando...</p>}
       {erro && <p className="error">{erro}</p>}
 
-      {!erro && (
+      {!carregando && !erro && (
         <>
           <h3>Totais por Pessoa</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Pessoa</th>
-                <th>Idade</th>
-                <th>Receitas</th>
-                <th>Despesas</th>
-                <th>Saldo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {porPessoa?.pessoas.map((p) => (
-                <tr key={p.pessoaId}>
-                  <td>{p.nomePessoa}</td>
-                  <td>{p.idade}</td>
-                  <td>{formatarMoeda(p.totalReceitas)}</td>
-                  <td>{formatarMoeda(p.totalDespesas)}</td>
-                  <td>{formatarMoeda(p.saldoLiquido)}</td>
+          <div className="table-wrap">
+            <table className="table mobile-stack">
+              <thead>
+                <tr>
+                  <th>Pessoa</th>
+                  <th>Idade</th>
+                  <th>Receitas</th>
+                  <th>Despesas</th>
+                  <th>Saldo</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {porPessoa?.pessoas.map((p) => (
+                  <tr key={p.pessoaId}>
+                    <td data-label="Pessoa">{p.nomePessoa}</td>
+                    <td data-label="Idade">{p.idade}</td>
+                    <td data-label="Receitas">{formatarMoeda(p.totalReceitas)}</td>
+                    <td data-label="Despesas">{formatarMoeda(p.totalDespesas)}</td>
+                    <td data-label="Saldo">{formatarMoeda(p.saldoLiquido)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           {porPessoa && (
-            <p>
+            <p style={{ marginTop: 10 }}>
               <strong>Total geral (Pessoas): </strong>
               {formatarMoeda(porPessoa.totalizador.saldoLiquido)}
             </p>
           )}
 
-          <h3 style={{ marginTop: 24 }}>Totais por Categoria</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Categoria</th>
-                <th>Finalidade</th>
-                <th>Receitas</th>
-                <th>Despesas</th>
-                <th>Saldo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {porCategoria?.categorias.map((c) => (
-                <tr key={c.categoriaId}>
-                  <td>{c.descricaoCategoria}</td>
-                  <td>{formatarFinalidade(c.finalidade)}</td>
-                  <td>{formatarMoeda(c.totalReceitas)}</td>
-                  <td>{formatarMoeda(c.totalDespesas)}</td>
-                  <td>{formatarMoeda(c.saldoLiquido)}</td>
+          <h3 style={{ marginTop: 20 }}>Totais por Categoria</h3>
+          <div className="table-wrap">
+            <table className="table mobile-stack">
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Finalidade</th>
+                  <th>Receitas</th>
+                  <th>Despesas</th>
+                  <th>Saldo</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {porCategoria?.categorias.map((c) => (
+                  <tr key={c.categoriaId}>
+                    <td data-label="Categoria">{c.descricaoCategoria}</td>
+                    <td data-label="Finalidade">{formatarFinalidade(c.finalidade)}</td>
+                    <td data-label="Receitas">{formatarMoeda(c.totalReceitas)}</td>
+                    <td data-label="Despesas">{formatarMoeda(c.totalDespesas)}</td>
+                    <td data-label="Saldo">{formatarMoeda(c.saldoLiquido)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           {porCategoria && (
-            <p>
+            <p style={{ marginTop: 10 }}>
               <strong>Total geral (Categorias): </strong>
               {formatarMoeda(porCategoria.totalizador.saldoLiquido)}
             </p>
