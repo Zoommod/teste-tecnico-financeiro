@@ -81,6 +81,15 @@ body {
   gap: 10px;
 }
 
+.btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
 form {
   display: grid;
   gap: 10px;

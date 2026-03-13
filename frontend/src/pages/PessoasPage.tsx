@@ -95,7 +95,7 @@ export function PessoasPage() {
     <button onClick={() => { setEditandoId(p.id); setNome(p.nome); setIdade(String(p.idade)) }}>
       Editar
     </button>
-    <button onClick={() => void excluir(p.id)}>
+    <button className="btn-danger" onClick={() => void excluir(p.id)}>
       Excluir
     </button>
   </div>

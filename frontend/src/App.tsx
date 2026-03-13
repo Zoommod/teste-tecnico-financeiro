@@ -1,5 +1,4 @@
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
+import { BrowserRouter, NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { PessoasPage } from './pages/PessoasPage';
 import { CategoriasPage } from './pages/CategoriasPage';
 import { TransacoesPage } from './pages/TransacoesPage';
@@ -20,7 +19,7 @@ export default function App() {
 
       <main className="container">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Navigate to="/pessoas" replace />} />
           <Route path="/pessoas" element={<PessoasPage />} />
           <Route path="/categorias" element={<CategoriasPage />} />
           <Route path="/transacoes" element={<TransacoesPage />} />
