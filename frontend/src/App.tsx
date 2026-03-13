@@ -1,22 +1,32 @@
-import { useEffect } from 'react';
-import { pessoaService } from './services/pessoaService';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { PessoasPage } from './pages/PessoasPage';
+import { CategoriasPage } from './pages/CategoriasPage';
+import { TransacoesPage } from './pages/TransacoesPage';
+import { RelatoriosPage } from './pages/RelatoriosPage';
 
-function App() {
-  useEffect(() => {
-    pessoaService.obterTodos()
-      .then((data) => {
-        console.log('✅ Conexão bem-sucedida! Dados recebidos da API:', data);
-      })
-      .catch((error) => {
-        console.error('❌ Falha na conexão com a API:', error);
-      });
-  }, []);
-
+export default function App() {
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1>Teste de Integração: Front-end - Back-end</h1>
-    </div>
+    <BrowserRouter>
+      <nav className="navigation">
+        <div className="nav-links">
+          <NavLink to="/">Início</NavLink>
+          <NavLink to="/pessoas">Pessoas</NavLink>
+          <NavLink to="/categorias">Categorias</NavLink>
+          <NavLink to="/transacoes">Transações</NavLink>
+          <NavLink to="/relatorios">Relatórios</NavLink>
+        </div>
+      </nav>
+
+      <main className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pessoas" element={<PessoasPage />} />
+          <Route path="/categorias" element={<CategoriasPage />} />
+          <Route path="/transacoes" element={<TransacoesPage />} />
+          <Route path="/relatorios" element={<RelatoriosPage />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -1,0 +1,1 @@
+export function TransacoesPage() { return <h1>Transações</h1>; }
