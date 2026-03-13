@@ -1,4 +1,5 @@
 import { Finalidade, TipoTransacao } from './enums';
+export { Finalidade, TipoTransacao };
 
 export interface Pessoa {
   id: string;
